@@ -1,0 +1,211 @@
+echo "# All-of-My-Uni-s-Project" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/imanalia95/All-of-My-Uni-s-Project.git
+git push -u origin main
+
+#include <stdio.h>
+
+int main(){
+
+	int num1, category;
+	int row;
+	int counter = 0;
+	char choice1, choice2, choice3;
+	int noBug, hoBug, noWheel, hoWheel, noUmb, hoUmb;
+	float total1 = 0, total2 = 0, total3 = 0;
+	float totalPrice;
+	float sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0, sum5 = 0, sum6 = 0;
+	char again = 'Y';
+	
+	//Ticket categories and pricing detail table
+	printf("            HYPOTHETICAL ZOO\n");
+    printf("     Ticket Categories and Pricing Detail\n");
+    
+	for(row = 1; row <= 55; row++){
+			printf("#");
+	    }
+	
+	printf("\n# Category  # Ticket Price  #   Add-ons/Hour          #\n");
+	
+	for(row = 1; row <= 55; row++){
+	        printf("#");
+	    }
+	
+	printf("\n#1) Baby    #  Free         #   Buggy(RM5.00)         #\n");
+	
+	printf("#############################   Wheelchair(RM5.50)    #\n");
+	
+	printf("#2) Toddler #  RM5.00       #   Umbrella(RM3.00)      #\n");
+	
+	printf("#############################                         #\n");
+	
+	printf("#3) Kids    #  RM8.00       #                         #\n");
+	
+	printf("#############################                         #\n");
+	
+	printf("#4) Adult   #  RM15.00      #                         #\n");
+	
+	printf("#############################                         #\n");
+	
+	printf("#5) Elderly #  RM10.00      #                         #\n");
+	
+	for(row = 1; row <= 55; row++){
+			printf("#");
+	    }
+	 
+	printf("\n");
+	printf("\n");
+	
+	while(again=='Y'||again=='y') //After the buyer finish purchased 1st ticket it'll enter loop
+	{
+		//Prompt the user to enter ticket category
+		printf("Please enter the ticket category to buy: ");
+		scanf("%d", &category);
+	
+			//Switch case to choose between 1-5 categories
+			switch(category){
+				case 1:
+					printf("Enter number of tickets for baby category: ");
+					scanf("%d", &num1);
+					
+					sum1 = 0;
+					
+					printf("Would you like to rent buggy? (Y-Yes, N-No): ");
+					scanf(" %c", &choice1);
+					
+					if(choice1=='Y'){ //Nested if else to rent buggy
+							printf("Enter number of buggies to rent: ");
+							scanf("%d", &noBug);
+							
+							printf("No of hours to rent the buggy(s): ");
+							scanf("%d", &hoBug);
+							
+							total1 = noBug*(hoBug*5);
+							
+							printf("Sub-Total #%d: RM%.2f", ++counter, total1);
+							break;
+					}
+						else{
+							if(choice1=='N'){
+								printf("Sub-Total #%d: free", ++counter);
+							}
+							else{
+								printf("Enter only either Y/N");
+							}
+						}
+					break;
+				case 2:
+					printf("Enter number of tickets for toddler category: ");
+					scanf("%d", &num1);
+					
+					sum2 = num1*5;
+					
+					printf("Sub-Total #%d: RM%.2f", ++counter, sum2);
+					break;
+				case 3:
+					printf("Enter number of tickets for kids category: ");
+					scanf("%d", &num1);
+					
+					sum3 = num1*8;
+					
+					printf("Sub-Total #%d: RM%.2f", ++counter, sum3);
+					break;
+				case 4:
+					printf("Enter number of tickets for adult category: ");
+					scanf("%d", &num1);
+					
+					sum4 = num1*15;
+					
+					printf("Sub-Total #%d: RM%.2f", ++counter, sum4);
+					break;
+				case 5:
+					printf("Enter number of tickets for elderly category: ");
+					scanf("%d", &num1);
+					
+					sum5 = num1*10;
+					
+					printf("Would you like to rent wheelchair? (Y-Yes, N-No): ");
+					scanf(" %c", &choice2);
+					
+					if(choice2=='Y'){ //Nested if else for renting wheelchair
+						printf("Enter number of wheelchair to rent: ");
+						scanf("%d", &noWheel);
+						
+						printf("No of hours to rent the wheelchair: ");
+						scanf("%d", &hoWheel);
+						
+						total2 = noWheel*hoWheel*5.50 + sum5;
+						
+						printf("Sub-Total #%d: RM%.2f", ++counter, total2);
+					}
+						else{
+							if(choice2=='N'){
+								total3 = num1*10;
+								printf("Sub-Total #%d: RM%.2f", ++counter, total3);		
+							}
+							else{
+								printf("Enter only either Y/N");
+							}
+						}
+					break;	
+				default:
+					printf("No ticket category for this");
+			}
+		
+		printf("\n");
+		printf("\n");
+	
+		printf("Choose another category? (Y-Yes, N-No): "); //Ask buyer to proceed with another purchase
+		scanf(" %c", &again);
+		
+	} //End of while loop
+	
+	
+	printf("Would you like to rent umbrella? (Y-Yes, N-No): "); //Appeared iff the buyer entered character other than Y/y
+	scanf(" %c", &choice3);
+	
+		switch(choice3){
+			case'Y':
+			case'y':
+				printf("Enter number of umbrellas to rent: ");
+				scanf("%d", &noUmb);
+				
+				printf("No of hours to rent the umbrella(s): ");
+				scanf("%d", &hoUmb);
+				
+				sum6 = noUmb*(hoUmb*3);
+				
+				printf("Sub-Total #%d: RM%.2f", ++counter, sum6);
+				break;
+			case'N':
+			case'n':
+				printf("Sub-Total #%d: RM%.2f", ++counter, sum6);
+				break;	
+			default:
+				printf("Enter either Y/N");
+		}
+			
+	printf("\n");
+	printf("\n");
+	
+	
+	
+	//Total price
+	totalPrice = sum2 + sum3 + sum4 + sum6 + total1 + total2 + total3;
+	printf("TOTAL SALE is: RM%.2f", totalPrice);
+	
+	//If else statement for purchase greater than or equal 50
+	if(totalPrice>=50){
+		printf("\nYou got a free T-Shirt!");
+	}
+	
+	else{
+		printf("");
+	}
+
+	return 0;				
+			
+}
